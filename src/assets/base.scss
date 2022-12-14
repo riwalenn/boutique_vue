@@ -1,12 +1,13 @@
 :root {
   --primary-1: #3498db;
-  --primary-2: #2980b9;
+  --primary-2: #268dd3;
   --danger-1: #e74c3c;
   --danger-2: #c0392b;
   --success-1: #2ecc71;
   --success-2: #27ae60;
   --gray-1:  #f6f6f6;
   --gray-2: #ddd;
+  --gray-3: #34495e;
   --text-color: #444;
   --text-primary-color: #fff;
 
@@ -66,7 +67,7 @@ body {
   justify-content: center;
 }
 
-.align-items {
+.align-items-center {
   align-items: center;
 }
 
@@ -84,6 +85,11 @@ body {
   padding: 20px;
 }
 
+.px-20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .p-30 {
   padding: 30px;
 }
@@ -92,6 +98,14 @@ body {
 
 .m-10 {
   margin: 10px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mr-20 {
+  margin-right: 20px;
 }
 
 .mb-10 {
