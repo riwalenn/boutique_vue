@@ -9,7 +9,7 @@ import Cart from "./components/Cart/Cart.vue";
   <div class="app-container">
     <TheHeader class="header" />
     <Shop class="shop" />
-<!--    <Cart class="cart b3" />-->
+    <Cart class="cart" />
     <TheFooter class="footer" />
   </div>
 </template>
@@ -34,6 +34,8 @@ import Cart from "./components/Cart/Cart.vue";
 }
 .cart {
   grid-area: cart;
+  border-left: var(--border);
+  background-color: #fff;
 }
 .footer {
   min-width: 100%;
