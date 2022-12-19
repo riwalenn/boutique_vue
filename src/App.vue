@@ -6,7 +6,7 @@ import Cart from "./components/Cart/Cart.vue";
 import data from "./data/products";
 
 import { reactive } from "vue";
-import type { ProductInterface } from './interfaces/product.interface';
+import type { ProductInterface } from "./interfaces/product.interface";
 
 const state = reactive<{
   products: ProductInterface[];
@@ -22,13 +22,25 @@ function addProductToCart(productId: number): void {
     state.cart.push({ ...product });
   }
 }
+
+function removeProductFromCart(productId: number): void {
+  state.cart = state.cart.filter((product) => product.id !== productId);
+}
 </script>
 
 <template>
   <div class="app-container">
     <TheHeader class="header" />
-    <Shop :products="state.products" @add-product-to-cart="addProductToCart" class="shop" />
-    <Cart class="cart" />
+    <Shop
+      :products="state.products"
+      @add-product-to-cart="addProductToCart"
+      class="shop"
+    />
+    <Cart
+      :cart="state.cart"
+      class="cart"
+      @remove-product-from-cart="removeProductFromCart"
+    />
     <TheFooter class="footer" />
   </div>
 </template>
@@ -45,7 +57,6 @@ function addProductToCart(productId: number): void {
   grid-template-rows: 48px auto 48px;
 }
 .header {
-  min-width: 100%;
   grid-area: header;
 }
 .shop {
@@ -54,10 +65,9 @@ function addProductToCart(productId: number): void {
 .cart {
   grid-area: cart;
   border-left: var(--border);
-  background-color: #fff;
+  background-color: white;
 }
 .footer {
-  min-width: 100%;
   grid-area: footer;
 }
 </style>
