@@ -6,11 +6,11 @@ import Cart from "./components/Cart/Cart.vue";
 import data from "./data/products";
 
 import { reactive } from "vue";
-import type { ProductInterface } from "./interfaces/product.interface";
+import type { ProductCartInterface, ProductInterface } from "./interfaces";
 
 const state = reactive<{
   products: ProductInterface[];
-  cart: ProductInterface[];
+  cart: ProductCartInterface[];
 }>({
   products: data,
   cart: [],
@@ -18,13 +18,29 @@ const state = reactive<{
 
 function addProductToCart(productId: number): void {
   const product = state.products.find((product) => product.id === productId);
-  if (product && !state.cart.find((product) => product.id === productId)) {
-    state.cart.push({ ...product });
+  if (product) {
+    const productInCart = state.cart.find(
+      (product) => product.id === productId
+    );
+    if (productInCart) {
+      productInCart.quantity++;
+    } else {
+      state.cart.push({ ...product, quantity: 1 });
+    }
   }
 }
 
 function removeProductFromCart(productId: number): void {
-  state.cart = state.cart.filter((product) => product.id !== productId);
+  const productFromCart = state.cart.find(
+    (product) => product.id === productId
+  );
+  if (productFromCart) {
+    if (productFromCart?.quantity === 1) {
+      state.cart = state.cart.filter((product) => product.id !== productId);
+    } else {
+      productFromCart.quantity--;
+    }
+  }
 }
 </script>
 
